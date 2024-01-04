@@ -1,0 +1,212 @@
+@startuml
+class com.example.greenie.alarm.AlarmScheduler {
+-  alarmManager
++ void schedule(AlarmItem)
++ void cancel(Int)
++ PendingIntent? alarmExists(Int)
+}
+interface com.example.greenie.data.dao.AlarmDao {
++ Flow<List<Alarm>> getAllAlarms()
++ Flow<Alarm?> getAlarmByPlantId(Int)
++ Long insertAlarm(Alarm)
++ Long upsertAlarm(Alarm)
++ Int updateAlarm(Alarm)
+}
+class com.example.greenie.domain.Classification {
+}
+class com.example.greenie.data.repositories.DiseasePhotoRepository {
++ void getAllDiseasePhotos()
+}
+class com.example.greenie.data.models.null {
+}
+class com.example.greenie.data.models.Disease {
+}
+class com.example.greenie.data.repositories.TreatmentRepository {
++ void getAllTreatments()
++ void getTreatmentsByDiseaseId(Int)
+}
+class com.example.greenie.data.models.null {
+}
+class com.example.greenie.data.models.Diagnosis {
+}
+class com.example.greenie.PreferencesDataStore {
+}
+class com.example.greenie.null {
+- DataStore<Preferences> dataStore
+-  DARK_MODE
+-  DARK_MODE_SYSTEM
+-  FIRST_LAUNCH
+}
+class com.example.greenie.data.models.null {
+}
+class com.example.greenie.data.models.TextRecord {
+}
+class com.example.greenie.data.repositories.PlantRepository {
++ void getAllPlants()
++ void getPlantById(Int)
++ void getPlantsSortedByModifiedAt()
++ void updatePlant(Plant)
+}
+interface com.example.greenie.data.dao.PlantDao {
++ Flow<List<Plant>> getAllPlants()
++ Flow<Plant> getPlantById(Int)
++ Flow<List<Plant>> getPlantsSortedByModifiedAt()
++ Int updatePlant(Plant)
+}
+class com.example.greenie.data.repositories.AlarmRepository {
++ void getAllAlarms()
++ void getAlarmByPlantId(Int)
++ void insertAlarm(Alarm)
++ void upsertAlarm(Alarm)
++ void updateAlarm(Alarm)
+}
+class com.example.greenie.data.null {
+}
+class com.example.greenie.data.null {
+}
+class com.example.greenie.data.null {
+}
+class com.example.greenie.data.null {
+}
+class com.example.greenie.data.null {
+}
+class com.example.greenie.data.null {
+}
+class com.example.greenie.data.null {
+}
+class com.example.greenie.data.MainDatabase$Companion {
+- MainDatabase? INSTANCE
+- MainDatabase buildDatabase(Context)
++ MainDatabase getDatabase(Context)
+}
+abstract class com.example.greenie.data.MainDatabase {
++ AlarmDao alarmDao()
++ DiagnosisDao diagnosisDao()
++ DiseaseDao diseaseDao()
++ DiseasePhotoDao diseasePhotoDao()
++ PlantDao plantDao()
++ TextRecordDao textRecordDao()
++ TreatmentDao treatmentDao()
+}
+class com.example.greenie.data.viewmodels.MainViewModel {
++ void getAllAlarms()
++ void getAlarmByPlantId(Int)
++ void upsertAlarm(Int,Int,Int,String,String,Int)
++ void updateAlarm(Alarm)
++ void getAllDiagnoses()
++ void getDiagnosisById(Long)
++ void getDiagnosesByPlantId(Int)
++ void getLastDiagnosisByPlantId(Int)
++ void insertDiagnosis(void,Int,void,Bitmap,void,Context,void,(Long?) -> Unit)
++ void null()
+- String writeFileToInternalStorage(Context,Bitmap,String)
++ void deleteDiagnosis(Diagnosis,Context)
+- Boolean deleteFileFromInternalStorage(Context,String)
++ void getAllDiseases()
++ void getDiseaseByTfcode(Int)
++ void getDiseaseById(Int)
++ void getAllDiseasePhotos()
++ void getAllPlants()
++ void getPlantById(Int)
++ void getPlantsSortedByModifiedAt()
++ void updatePlant(Int,String,String?)
++ void getAllTextRecords()
++ void getTextRecordsByPlantId(Int)
++ void insertTextRecord(String,Int)
++ void deleteTextRecord(TextRecord)
++ void getAllTreatments()
++ void getTreatmentsByDiseaseId(Int)
+}
+interface com.example.greenie.data.dao.TextRecordDao {
++ Flow<List<TextRecord>> getAllTextRecords()
++ Flow<List<TextRecord>> getTextRecordsByPlantId(Int)
++ Long insertTextRecord(TextRecord)
++ Int deleteTextRecord(TextRecord)
+}
+interface com.example.greenie.data.models.Record {
++ Long createdAt
+}
+class com.example.greenie.components.camera.null {
++ void onCaptureSuccess(ImageProxy)
++ void onError(ImageCaptureException)
+}
+class com.example.greenie.data.models.null {
+}
+class com.example.greenie.data.models.Treatment {
+}
+class com.example.greenie.MainActivity {
+- MainViewModel mainViewModel
++ void onCreate(Bundle?)
+}
+class com.example.greenie.TabInfo {
+}
+class com.example.greenie.alarm.AlarmItem {
+}
+interface com.example.greenie.data.dao.TreatmentDao {
++ Flow<List<Treatment>> getAllTreatments()
++ Flow<List<Treatment>> getTreatmentsByDiseaseId(Int)
+}
+class com.example.greenie.alarm.AlarmReceiver {
++ void onReceive(Context,Intent?)
+- void notify(Context,String,AlarmItem)
+- void createNotificationChannel(NotificationManager,String)
+}
+interface com.example.greenie.data.dao.DiseaseDao {
++ Flow<List<Disease>> getAllDiseases()
++ Flow<Disease> getDiseaseById(Int)
++ Flow<Disease> getDiseaseByTfcode(Int)
+}
+class com.example.greenie.data.repositories.DiagnosisRepository {
++ void getAllDiagnoses()
++ void getDiagnosesByPlantId(Int)
++ void getDiagnosisById(Long)
++ void getLastDiagnosisByPlantId(Int)
++ void insertDiagnosis(Diagnosis)
++ void deleteDiagnosis(Diagnosis)
+}
+class com.example.greenie.data.repositories.DiseaseRepository {
++ void getAllDiseases()
++ void getDiseaseById(Int)
++ void getDiseaseByTfcode(Int)
+}
+class com.example.greenie.data.models.null {
+}
+class com.example.greenie.data.models.Alarm {
+}
+class com.example.greenie.domain.Classifier {
+}
+interface com.example.greenie.data.dao.DiagnosisDao {
++ Flow<List<Diagnosis>> getAllDiagnoses()
++ Flow<Diagnosis> getDiagnosisById(Long)
++ Flow<List<Diagnosis>> getDiagnosesByPlantId(Int)
++ Flow<Diagnosis> getLastDiagnosisByPlantId(Int)
++ Long insertDiagnosis(Diagnosis)
++ Int deleteDiagnosis(Diagnosis)
+}
+class com.example.greenie.data.models.Plant {
+}
+class com.example.greenie.data.models.null {
+}
+class com.example.greenie.data.models.DiseasePhoto {
+}
+class com.example.greenie.data.viewmodels.ViewModelFactory {
+}
+class com.example.greenie.data.repositories.TextRecordRepository {
++ void getAllTextRecords()
++ void getTextRecordsByPlantId(Int)
++ void insertTextRecord(TextRecord)
++ void deleteTextRecord(TextRecord)
+}
+interface com.example.greenie.data.dao.DiseasePhotoDao {
++ Flow<List<DiseasePhoto>> getAllDiseasePhotos()
+}
+
+
+com.example.greenie.data.MainDatabase +.. com.example.greenie.data.MainDatabase$Companion
+androidx.room.RoomDatabase <|-- com.example.greenie.data.MainDatabase
+androidx.lifecycle.ViewModel <|-- com.example.greenie.data.viewmodels.MainViewModel
+com.example.greenie.components.camera.OnImageCapturedCallback <|-- com.example.greenie.components.camera.null
+androidx.activity.ComponentActivity <|-- com.example.greenie.MainActivity
+android.content.BroadcastReceiver <|-- com.example.greenie.alarm.AlarmReceiver
+com.example.greenie.data.viewmodels. <|.. com.example.greenie.data.viewmodels.ViewModelFactory
+@enduml
