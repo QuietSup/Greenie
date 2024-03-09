@@ -4,7 +4,7 @@
 ![image](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
 ![image](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 
-# Greenie mobile — your plant treatment assistant
+# Greenie Mobile: Your Plant Care Companion
 Android app for plant disease detection
 - take photos with camera and get AI diagnosis
 - get treatment recommendations
